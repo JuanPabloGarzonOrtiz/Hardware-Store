@@ -1,0 +1,133 @@
+html, body{
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+main{
+    display: flex;
+    justify-content:space-around;
+}
+.info-Pedido{
+    border-style: solid;
+    border-color: rgb(128, 58, 58);
+    border-radius: 20px;
+    margin: 3% 0%;
+    width: 70%;
+    font-size: 150%;
+    .producto, .ultimo-producto{
+        display: flex;
+        align-items: center;
+        border-bottom-style: solid;
+        border-color: rgb(128, 58, 58);
+        h2,.metodos-envio, .precios, .cantidad-productos{
+            padding: 2%;
+        }
+        .metodos-envio{
+            .metodo-envio{
+                display: flex;
+                padding-right: 5%;
+            }
+        }
+        .cantidad-productos{
+            display: flex;
+            gap: 5%;
+            align-items: center;
+            input{
+                width: 20%;
+                height: 50%;
+            }
+        }
+    } 
+    .ultimo-producto{
+        border-style:none ;
+    }   
+}
+.resumen-Pedido{
+    width: 25%;
+    height: 100%;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 3% 0%;
+    border-bottom-style: solid;
+    border-color: rgb(128, 58, 58);
+    display: block;
+    font-size: 150%;
+    .apartado-resumen{
+        border-bottom-style: solid;
+        border-color: rgb(128, 58, 58);
+    }
+    h1{
+        text-align: center;
+    }
+    h2{
+        padding-left: 5%;
+    }
+
+    .precio, .producto, .total-descuento{
+        display: flex;
+        justify-content: space-between;
+        padding: 0% 10%;
+    }
+    .total-descuento{
+        padding: 0% 3%;
+    }
+    .total{
+        font-size: 150%;
+        display: block;
+        text-align: center;
+        padding-bottom: 5%;
+        div{
+            display: flex;
+            justify-content: space-between;
+            padding: 0% 1%;
+        }
+        button{
+            width: 70%;
+            height: 60px;
+            background-color: rgb(28, 145, 235);
+            border-style: solid;
+            border-color: black;
+            border-radius: 10px;
+            font-size: 100%;
+        }
+    }
+}
+
+@media (max-width:800px){
+    main{
+        display: grid;
+        justify-items: center;
+        padding: 5%;
+        .resumen-Pedido{
+            width: 70%;
+        }
+    }
+}
+
+@media (max-width:600px){
+    main{
+        padding: 5%;
+        display:grid;
+        justify-items: center;
+
+        .info-Pedido{
+            .producto, .ultimo-producto{
+                display: block;
+                text-align: center;
+                font-size: 70%;
+                .metodo-envio{
+                    padding-left: 25%;
+                }
+                .cantidad-productos{
+                    padding-left: 30%;
+                }
+            }
+        }
+        .resumen-Pedido{
+            width: 70%;
+            font-size: 70%;
+        }
+    }
+
+}
