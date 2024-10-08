@@ -1,0 +1,92 @@
+main{
+    display: block;
+    text-align: center;
+    margin: 50px 200px;
+}
+
+.correo-Usuario, .contraseña-Usuario, .registro-usuario{
+    text-align: center;
+    align-items: end;
+    input{
+        width: 60%;
+        height: 40px;
+        border-radius: 10px;
+        border-style: none;
+        outline: none;
+        color: white;
+        background-color: black;
+        padding-left: 1%;
+        display: block;
+        margin: 10px auto;
+    }
+    button{
+        width: 10%;
+        height: 50px;
+        background-color: rgb(28, 145, 235);
+        border-radius: 5px;
+        border-style: solid;
+        border-color: black;
+        display: block;
+        margin: 15px auto;
+        font-size: 140%;
+    }
+    .recibir-codigo{
+        height: 100px; 
+    }
+}
+.registro-usuario{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+hr{
+    width: 30%;
+    height: 1px;
+    background-color: black;
+}
+.creacion-cuenta{
+    display:block;
+    margin: 25px 30%;
+    text-align: center;
+    font-size: 120%;
+    text-decoration: none;
+    color: rgb(128, 58, 58);
+}
+.creacion-cuenta:hover{
+    color: white;
+}
+
+@media (max-width:1000px){
+    .correo-Usuario, .contraseña-Usuario{
+        input{
+            width: 50%;
+        }
+        button{
+            width: 20%;
+            height: 20%;
+        }
+        .recibir-codigo{
+            width: 30%;
+        }
+    }
+    hr{
+        width: 50%;
+    }
+    .creacion-cuenta{
+        margin: 25px 20%;
+    }
+    .registro-usuario{
+        padding-top: 10%;
+        input{
+            width: 50%;
+        }
+        button{
+            width: 30%;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    main{
+        margin: 50px 500px;
+    }
+}

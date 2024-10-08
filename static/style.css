@@ -1,0 +1,252 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    background-color: rgb(231, 219, 204);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0
+}
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main{
+    flex: 1;
+}
+header{
+    background-color: rgb(28, 145, 235);
+    border-color:z black;
+    border-style: solid;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    .Logo_Pagina{
+        padding-right: 8%;
+    }
+    nav{
+        display:flex;
+        flex-direction: column;
+        gap: 20px;
+        letter-spacing: 4px;
+        text-align: center;
+        width: 100%;
+        .barra{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding-top: 1%;
+            display: inline-block;
+
+            .barra_Busqueda{  
+                box-sizing: border-box;
+                width:100%; 
+                height: 120%;
+                padding-left: 2%;
+                padding-right: 5%;
+                outline: none;
+                background: rgb(231, 219, 204);
+                border-radius: 10px;
+                font-size: 130%;
+            }
+
+            .button_Buscar{
+                position: absolute;
+                right: 5px; 
+                top: 70%;
+                transform: translateY(-50%);
+                z-index: 2;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+            }
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        a:hover{
+            color: rgb(231, 219, 204);
+        }
+    }
+    .Panel_Usario{
+        display: flex;
+        padding-left: 10%;
+        padding-right: 5%;
+        gap:30%;
+
+        .icono_Cuenta,.icono_Carrito{
+            height: 30px;
+        }
+        .icono_Carrito:hover,.icono_Cuenta:hover{
+            fill: rgb(231, 219, 204);
+        }
+    }
+}
+
+footer{
+    background-color: rgb(128, 58, 58);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-color: black;
+    border-style: solid;
+    .datos_Contacto{
+        width: 33%;
+        padding-left: 1%;
+        .telefono, .ubicacion, .whatsapp, .correo{
+            gap: 3%;
+            line-height: 1%;
+            padding-left: 3%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .dudas{
+        width: 33%;
+        padding-left: 2%;
+        .enlaces_Dudas{
+            line-height: 180%;
+            display:grid;
+            align-items:center;
+            padding-left: 3%;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            a:hover{
+                color: rgb(231, 219, 204);
+            }
+        }
+    }
+    .cotizacion{
+        width: 33%;
+        padding-left: 2%;
+        padding-bottom: 3%;
+        .titulo_Cotizacion{
+            display: flex;
+            justify-content: center;
+        }
+        .indicaciones_Cotizacion{
+            line-height: 150%;
+            padding-left: 3%;
+        }
+        .ingreso_Correo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            .barra_Correo{
+                box-sizing: border-box;
+                border-radius: 10px;
+                outline: none;
+                background-color: rgb(231, 219, 204);
+            }
+            .envio_Correo{
+                border-radius: 10px;
+                background-color: black;
+                color: rgb(231, 219, 204);
+            }
+        }
+        
+    }
+}
+
+
+
+@media (max-width: 700px) {
+    a{
+        font-size:80%;
+        text-align:justify;
+    }
+    footer{
+        .datos_Contacto{
+            .ubicacion{
+                line-height: 100%;
+            }
+        }
+        .cotizacion{
+            .ingreso_Correo{
+                display: grid;
+                justify-items: center;
+                .envio_Correo{
+                    width: 30%;
+                }
+            }
+        }
+    }
+}
+@media (max-width:600px){
+    header{
+        .Logo_Pagina{
+            width: 200%;
+        }
+        nav{
+            width: 900%;
+            gap: 4px;
+            letter-spacing: 0px;
+            .barra{
+                width: 100%;
+                height: 20px;
+                padding-top: 5%;
+                
+                .barra_Busqueda{
+                    padding-left: 4%;
+                    padding-right: 12%;
+                    font-size: 90%;
+                }
+                .button_Buscar{
+                    padding-top: 4%;
+                    padding-right: 0%;
+                }
+            }
+            a{
+                font-size: 50%;
+                text-align:justify;
+            }
+        }
+        .Panel_Usario{
+            .icono_Carrito,.icono_Cuenta{
+                height: 20px;
+            }
+        }  
+    }
+    .Marcas{
+        h1{
+            font-size: 100%;
+        }
+        .Logo_Structure, .Logo_Imperio-Mineral, .Logo_Boodywork-and-Paiting, .Logo_Picasso{
+            width: 100px;
+        }
+    }
+    footer{
+        display:block;
+        padding-top: 1%;
+        padding-bottom: 10%;
+        font-size: 70%;
+
+        .datos_Contacto{
+            width: 95%;
+            text-align: center;
+            gap: 40%;
+            .telefono, .ubicacion, .whatsapp, .correo{
+                justify-content: center;
+                gap: 1%;
+            }
+        }
+        .dudas{
+            width: 95%;
+            text-align: center;
+            .enlaces_Dudas{
+                justify-content:center;
+            }
+        }
+        .cotizacion{
+            width: 95%;
+        }
+    }
+}
