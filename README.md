@@ -22,10 +22,10 @@ En desarrollo
 ### Archivos Principales
  - `README.md`: Archivo de explicación de Proyecto.
  - `index.php`: Archivo de inicio de aplicación e invoca el inicio.
+### Directorios
  - **database/**: 
    - `Hardware_Store.db`: Archivo donde se guarda el registro del SQL de la Base de datos, con la creación e inserción de datos.
    - `database.php`: Archivo de Gestión de Consultas SQL del Proyecto.
-### Directorios
  - **templates/**:
    - `base.php`: Archivo de  donde se crean el header y el footer, reutilizado en todas las Plantillas.
    - `inicio.php`: Archivo de Página inicial de Proyecto.
