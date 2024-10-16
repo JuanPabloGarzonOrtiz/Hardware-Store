@@ -14,6 +14,7 @@ main{
     border-radius: 20px;
     margin: 3% 0%;
     width: 70%;
+    height: 20%;
     font-size: 150%;
     .producto, .ultimo-producto{
         display: flex;
@@ -42,6 +43,9 @@ main{
     .ultimo-producto{
         border-style:none ;
     }   
+    .no_product{
+        text-align: center;
+    }
 }
 .resumen-Pedido{
     width: 25%;
@@ -53,23 +57,20 @@ main{
     border-color: rgb(128, 58, 58);
     display: block;
     font-size: 150%;
-    .apartado-resumen{
+    .apartado-resumen, .descuento_Cliente{
         border-bottom-style: solid;
         border-color: rgb(128, 58, 58);
     }
-    h1{
+    h1, h2{
         text-align: center;
     }
-    h2{
-        padding-left: 5%;
-    }
 
-    .precio, .producto, .total-descuento{
+    .precio, .producto, .total-descuento, .descuento_Cliente{
         display: flex;
         justify-content: space-between;
         padding: 0% 10%;
     }
-    .total-descuento{
+    .total-descuento, .descuento_Cliente{
         padding: 0% 3%;
     }
     .total{
@@ -82,15 +83,22 @@ main{
             justify-content: space-between;
             padding: 0% 1%;
         }
-        button{
-            width: 70%;
-            height: 60px;
-            background-color: rgb(28, 145, 235);
-            border-style: solid;
-            border-color: black;
-            border-radius: 10px;
-            font-size: 100%;
+        .buttons{
+            display: flex;
+            justify-content: space-around;
+            gap: 4%;
+            margin: 2%;
+            button{
+                width: 50%;
+                height: 50px;
+                background-color: rgb(28, 145, 235);
+                border-style: solid;
+                border-color: black;
+                border-radius: 10px;
+                font-size: 80%;
+            }
         }
+
     }
 }
 

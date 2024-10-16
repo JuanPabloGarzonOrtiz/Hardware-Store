@@ -1,8 +1,4 @@
 <?php
-    $mysql = new mysqli("localhost", "janpo", "12345", "Hardware_Store", 3306);
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     if ($mysql->connect_error){
         die("Fallo de Conexion: " . $mysql->connect_error);
     }

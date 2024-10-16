@@ -1,5 +1,5 @@
 
-.titulo_Ofertas{
+.titulo_Ofertas, .titulo_Mas_Vendidos, .titulo_Vistos {
     display: flex;
     justify-content: center;
 }
@@ -7,18 +7,19 @@
     overflow-x: auto;
     display: flex;
     scroll-behavior: smooth;
+    justify-content:left;
     padding-left: 1%;
     padding-right: 1%;
     gap: 1%;
-    min-width: 100%;
     .producto{
         border-color: black;
         border-style: solid;
+        position: relative;
         figure{
             padding: 0;
             margin: 0;
             width: 280px;
-            height: 280px;
+            height: 300px;
             .img_producto{
                 width: 280px; 
                 border-bottom: solid;
@@ -28,6 +29,31 @@
             text-align: center;
             font-size: 80%;
         }
+        .btns-producto{
+            display: none;
+            position: absolute;
+            width: 80%;
+            height: 40%;
+            top: 15%;
+            left: 10%;
+            gap: 30%;
+            z-index: 1;
+            button{
+                border-style: solid;
+                border-width: 5px;
+                border-radius: 25px;;
+                border-color: black;
+                background-color: rgba(255, 254, 254, 0.221);
+                font-size: 150%;
+            }
+        }
+        &:hover .btns-producto{
+            display: grid;
+            .ver_producto:hover, .añadir_producto:hover{
+                background-color: rgb(28, 145, 235);
+            }
+        }
+
     }
     .flecha{
         background-color: transparent;
