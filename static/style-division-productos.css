@@ -88,6 +88,7 @@
             .producto{
                 border-color: black;
                 border-style: solid;
+                position: relative;
                 figure{
                     padding: 0;
                     margin: 0;
@@ -100,6 +101,30 @@
                 }
                 .info-producto{
                     text-align: center;
+                }
+                .btns-producto{
+                    display: none;
+                    position: absolute;
+                    width: 80%;
+                    height: 40%;
+                    top: 15%;
+                    left: 10%;
+                    gap: 30%;
+                    z-index: 1;
+                    button{
+                        border-style: solid;
+                        border-width: 5px;
+                        border-radius: 25px;;
+                        border-color: black;
+                        background-color: rgba(255, 254, 254, 0.221);
+                        font-size: 150%;
+                    }
+                }
+                &:hover .btns-producto{
+                    display: grid;
+                    .ver_producto:hover, .añadir_producto:hover{
+                        background-color: rgb(28, 145, 235);
+                    }
                 }
             }
         }

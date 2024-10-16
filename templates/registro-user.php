@@ -14,11 +14,32 @@
             echo mheader();
         ?>
         <main>
-            <section class="registro-usuario">
-                <h1>Correo Electronico</h1>
-                <input type="text" placeholder="Eje:ejemplo@mail.com" >
-                <button class="recibir-codigo">Recibir Codigo de Acceso</button>
-            </section>
+            <form method="POST" action="">
+                <section class="registro-usuario">
+                    <h1>Nombre</h1>
+                    <input type="text" placeholder="Eje:Juan Esteban Garcia" require = "" name = "nombre">
+                    <h1>Email</h1>
+                    <input type="email" placeholder="Eje:ejemplo@mail.com" require= "" name = "email">
+                    <h1>Contraseña</h1>
+                    <input type="password" placeholder="Eje:iScRnMx$uR^xGC63" require = "" name = "password">
+                    <button class="recibir-codigo" type="submit" name="sumit">Recibir Codigo de Acceso</button>
+                </section>
+            </form>
+            <?php 
+                if (isset($_POST['sumit'])){
+                    $nombre = $_POST['nombre'];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    require_once('../database/database.php');
+                    $db = new database();
+                    $corroboracion_Cuenta = ($db->registro($nombre, $email, $password)) ? : '';
+                    if ($corroboracion_Cuenta = "Ya existe una cuenta con ese correo"){
+                        echo $corroboracion_Cuenta;
+                    }else{
+                        header('Location: ../index.php');
+                    }
+                }
+            ?>
         </main>
         <?php 
         mfooter();

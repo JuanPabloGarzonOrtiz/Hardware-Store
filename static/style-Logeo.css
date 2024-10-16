@@ -4,7 +4,7 @@ main{
     margin: 50px 200px;
 }
 
-.correo-Usuario, .contraseña-Usuario, .registro-usuario{
+.correo-Usuario, .contraseña-Usuario, .registro-usuario, .close_session{
     text-align: center;
     align-items: end;
     input{

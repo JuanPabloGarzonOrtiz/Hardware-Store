@@ -1,6 +1,5 @@
 <?php 
     function mheader(){
-        $nombre_Seccion = "";
         return '
             <header>
                 <img src="/imgs/Logo_Pagina.png" alt="Logo_Pagina" width="100" class="Logo_Pagina">

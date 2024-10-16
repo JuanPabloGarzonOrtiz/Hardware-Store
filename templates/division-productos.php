@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="/static/style-division-productos.css">
     <link rel="stylesheet" href="/static/style.css"/> 
 </head>
+<?php 
+    include('base.php');
+    echo mheader();
+?>
 <body>
-    <?php 
-        include('base.php');
-        echo mheader();
-    ?>
     <main>
         <section class="divisiones-pag-productos">
             <aside>
@@ -103,18 +103,39 @@
                                     </figure>
                                     <div class="info-producto">
                                         <h3>'. htmlspecialchars($productos_Seccion[$cont]['nombre']).'</h3>'.
-                                        '<p>'. htmlspecialchars($productos_Seccion[$cont]['Proveedor']).'</p>'.
-                                        '<h2>$'. htmlspecialchars($productos_Seccion[$cont]['precio']).'</h2>'.
+                                        '<p>'. htmlspecialchars($productos_Seccion[$cont]['marca']).'</p>'.
+                                        '<del>$'. htmlspecialchars($productos_Seccion[$cont]['precio']).'</del>'.
+                                        '<h2>$'. htmlspecialchars($productos_Seccion[$cont]['precio']) - htmlspecialchars($productos_Seccion[$cont]['descuento']).'</h2>'.
                                     '</div>
-                                </div>';
+                                    <form method="POST" action="">
+                                        <input type="hidden" name="p_id" value="' . $cont . '">
+                                        <div class="btns-producto">
+                                            <button class="ver_producto" type="submit" name="submit_ver">Ver Producto</button>
+                                            <button class="añadir_producto" type="submit" name="submit_compra">Añadir al Carrito</button>
+                                        </div>
+                                    </form>';
+                                echo '</div>';
+                        }
+                        if (isset($_POST['submit_compra'])){
+                            $jsonList = '../static/lista.json';
+                            $lista = file_get_contents($jsonList);
+                            $productos = json_decode($lista, true);
+                            $nuevoProducto = array(
+                                "nombre" => htmlspecialchars($productos_Seccion[$_POST['p_id']]['nombre']),
+                                "precio" => htmlspecialchars($productos_Seccion[$_POST['p_id']]['precio']),
+                                "precio_descuento" => htmlspecialchars($productos_Seccion[$_POST['p_id']]['descuento'])
+                            );
+                            $productos['productos'][] = $nuevoProducto; 
+                            $jsonActualizado = json_encode($productos, JSON_PRETTY_PRINT);
+                            file_put_contents($jsonList, $jsonActualizado);
                         }
                     ?>
                 </section>
             </div>
         </section>
     </main>
-    <?php 
-        mfooter();
-    ?> 
 </body>
+<?php 
+    mfooter();
+?> 
 </html>

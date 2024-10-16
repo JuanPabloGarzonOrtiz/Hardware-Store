@@ -13,6 +13,7 @@ En desarrollo
    - Instalación de extensiones:
      - `libapache2-mod-php`
      - `php-mysql`
+     - `php-sqlite3`
      - `composer`
    - Habilitar PHP para servidor:
      - `sudo a2enmod php`
