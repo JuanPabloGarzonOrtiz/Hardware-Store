@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="precios">
                                         <p><del>$'. htmlspecialchars($producto['precio']) .' Antes</del></p>
-                                        <p>$'. htmlspecialchars($producto['precio']) - htmlspecialchars($producto['precio_descuento']) .' Hoy</p>
+                                        <p>$'. (htmlspecialchars($producto['precio']) - htmlspecialchars($producto['precio_descuento'])) .' Hoy</p>
                                     </div>
                                     <form method="POST" action="">
                                         <div class="cantidad-productos">

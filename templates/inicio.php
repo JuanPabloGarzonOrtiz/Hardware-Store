@@ -27,7 +27,7 @@
                         <h2>'. htmlspecialchars($productos[$cont]['nombre']).'</h2>'.
                         '<p>'. htmlspecialchars($productos[$cont]['marca']).'</p>'.
                         '<del>$'. htmlspecialchars($productos[$cont]['precio']).'</del>'.
-                        '<h2>$'. htmlspecialchars($productos[$cont]['precio']) - htmlspecialchars($productos[$cont]['descuento']).'</h2>'.
+                        '<h2>$'. (htmlspecialchars($productos[$cont]['precio']) - htmlspecialchars($productos[$cont]['descuento'])).'</h2>'.
                     '</div>
                     <form method="POST" action="">
                         <input type="hidden" name='.$id.' value="' . $cont . '">

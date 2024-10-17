@@ -105,7 +105,7 @@
                                         <h3>'. htmlspecialchars($productos_Seccion[$cont]['nombre']).'</h3>'.
                                         '<p>'. htmlspecialchars($productos_Seccion[$cont]['marca']).'</p>'.
                                         '<del>$'. htmlspecialchars($productos_Seccion[$cont]['precio']).'</del>'.
-                                        '<h2>$'. htmlspecialchars($productos_Seccion[$cont]['precio']) - htmlspecialchars($productos_Seccion[$cont]['descuento']).'</h2>'.
+                                        '<h2>$'. (htmlspecialchars($productos_Seccion[$cont]['precio']) - htmlspecialchars($productos_Seccion[$cont]['descuento'])).'</h2>'.
                                     '</div>
                                     <form method="POST" action="">
                                         <input type="hidden" name="p_id" value="' . $cont . '">
