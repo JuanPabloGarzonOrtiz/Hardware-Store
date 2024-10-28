@@ -1,4 +1,4 @@
-}# Hardware-Store
+# Hardware-Store
 Página Web para la Empresa de Harware-Sotore
 
 ## Estado del Proyecto 
