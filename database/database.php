@@ -10,12 +10,12 @@
     }
 
     class database{
-        public function consultas_Cuenta($consulta, $lista = "", $email = "", $contraseña = "", $division = ""){
+        public function consultas_Cuenta($consulta, $lista = "", $email = "", $contraseña = "", $division_producto = ""){
             global $mysql;
             if (empty($email)){
-                if (!empty($division)){
+                if (!empty($division_producto)){
                     $preparacion = $mysql->prepare($consulta);
-                    $preparacion->bind_param("s",$division);
+                    $preparacion->bind_param("s",$division_producto);
                     $preparacion->execute();
                     $resultado = $preparacion->get_result();
                 }else{
@@ -71,7 +71,19 @@
                         FROM Clientes 	
                             WHERE  email = ? AND contraseña = ?;";
             $datos =  (new database())->consultas_Cuenta($sql_logeo, null, $correo, $contraseña);
+            $session_Anterior = $_SESSION['email_user'];
             $_SESSION['email_user'] =(!empty($datos) ? $correo : "");
+
+            $jsonList = '../static/lista.json';
+            $lista = file_get_contents($jsonList);
+            $productos = json_decode($lista, true);
+            foreach($productos as $producto => &$valor){
+                if ($producto == $session_Anterior){
+                    unset($productos[$session_Anterior]);
+                    $productos[$_SESSION['email_user']] = $valor;
+                    file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
+                }
+            }
             return $datos;
         }
         public function cerrar_Secion(){
@@ -105,6 +117,15 @@
                             FROM Productos  p 
                                 WHERE clasificacion  = ?";      
             return (new database()) ->consultas_Cuenta($sql_productos, null,null,null,$division);   
+        }
+        public function buscar_Producto($nombre_producto){
+            $sql_buscar_Producto = "SELECT 
+                                        nombre,
+                                        precio,
+                                        precio,
+                                        descuento
+                                    FROM Productos WHERE nombre = ?";
+            return(new database()) ->consultas_Cuenta($sql_buscar_Producto,null,null,null,$nombre_producto);
         }
         public function registro($nombre, $email, $password){
             global $mysql;

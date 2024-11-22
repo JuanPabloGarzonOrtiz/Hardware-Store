@@ -1,0 +1,45 @@
+.Producto{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    
+    .img_producto{
+        width: 70%;
+        border: solid black 5px;
+        border-radius: 5%;
+        margin: 10% 25%;
+    }
+    .Informacion{
+        margin-left: 10%;
+        font-size: 200%;
+        .botones{
+            display: flex;
+            align-items: center;
+
+            .añadir_producto{
+                width: 40%;
+                height: 100px;
+                margin: 5% 5%;
+                border-style: solid;
+                border-width: 5px;
+                border-radius: 25px;;
+                border-color: rgb(28, 145, 235);
+                background-color: rgba(28, 145, 235, 0.273);
+                font-size: 120%;
+            }
+            .añadir_producto:hover{
+                background-color:rgb(28, 145, 235);
+                border-color: black;
+            }
+            .cantidad_Productos{
+                width: 10%;
+                height: 80px;
+                font-size: 200%;
+                border-width: 5px;
+                border-color: rgb(28, 145, 235);
+                border-radius: 10px;
+                background-color: rgba(28, 145, 235, 0.273);
+            }
+        }
+    }
+}

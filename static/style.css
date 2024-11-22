@@ -1,23 +1,19 @@
 body, html {
-    height: 100%;
+    height: 10%;
     width: 100%;
     margin: 0%;
     padding: 0%;
 }
-
+main{
+    text-align: center;
+    min-height: 10%;
+    box-sizing: border-box;
+}
 body{
     background-color: rgb(231, 219, 204);
     font-family: 'Courier New', Courier, monospace;
-    margin: 0
 }
-.contenedor {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main{
-    flex: 1;
-}
+
 header{
     background-color: rgb(28, 145, 235);
     border-color:z black;
@@ -63,6 +59,9 @@ header{
                 border: none;
                 background: transparent;
                 cursor: pointer;
+            }
+            .button_Buscar:hover{
+                fill: white;
             }
         }
         a{
