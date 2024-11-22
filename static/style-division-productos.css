@@ -43,7 +43,7 @@
                     font-size: 100%;
                 }
             }
-            .marca-Producto{
+            .marca-Producto, .tipo-Producto{
                 font-size: 100%;
                 display: flex;
                 justify-content: space-around;

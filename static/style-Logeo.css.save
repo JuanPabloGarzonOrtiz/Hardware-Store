@@ -34,7 +34,7 @@ main{
         border-style: solid;
         border-color: black;
         display: block;
-        margin: 4px auto;
+        margin: 46px auto;
         font-size: 140%;
     }
     .recibir-codigo{
