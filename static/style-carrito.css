@@ -1,141 +1,100 @@
-html, body{
-    height: 100%;
-    margin: 0%;
-    padding: 0%;
-}
-
 main{
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
-.info-Pedido{
-    border-style: solid;
-    border-color: rgb(128, 58, 58);
+main section{
+    border:solid rgb(128, 58, 58);
     border-radius: 20px;
     margin: 3% 0%;
-    width: 70%;
-    height: 20%;
-    font-size: 150%;
-    .producto, .ultimo-producto{
-        display: flex;
-        align-items: center;
-        border-bottom-style: solid;
-        border-color: rgb(128, 58, 58);
-        h2,.metodos-envio, .precios, .cantidad-productos{
-            padding: 2%;
-        }
-        .metodos-envio{
-            .metodo-envio{
-                display: flex;
-                padding-right: 5%;
-            }
-        }
-        .cantidad-productos{
-            display: flex;
-            gap: 5%;
-            align-items: center;
-            input{
-                width: 20%;
-                height: 50%;
-            }
-        }
-    } 
-    .ultimo-producto{
-        border-style:none ;
-    }   
-    .no_product{
-        text-align: center;
-    }
+    height: min-content;
 }
+.info-Pedido{
+    width: 70%;
+}
+.info-Pedido .producto{
+    border-bottom: solid rgb(128, 58, 58);
+}
+.info-Pedido div:not(.metodos-envio, .precios){
+    display: flex;
+    align-items: center;
+    gap:10%;
+    padding:2%;
+}
+.info-Pedido div h2{
+    width: 200px;
+}
+.metodos-envio{
+    width: 30%;
+}
+.info-Pedido  .precios{
+    width: 23%;
+    text-align: center;
+}
+.info-Pedido form{
+    text-align: center;
+}
+.info-Pedido form input{
+    width: 20%;
+    height: 50%;
+    border: solid 1px rgb(28, 145, 235);
+    border-radius: 5px;
+    background-color: rgba(28, 145, 235, 0.273);
+}
+.info-Pedido form button{
+    background-color: black;
+    color: white;
+    border: solid rgb(128, 58, 58);
+    border-radius: 10px;
+    height: 30px;
+}
+
 .resumen-Pedido{
     width: 25%;
-    height: 100%;
-    border-style: solid;
+}
+h1, h2{
+    text-align: center;
+}
+.resumen-Pedido div div, .resumen-Pedido .descuento_Cliente div{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+.resumen-Pedido div div:not(.total-descuento, .total_Cantidad){
+    padding: 0% 10%;
+}
+.apartado-resumen, .descuento_Cliente {
+    border-bottom: solid rgb(128, 58, 58);
+}
+.resumen-Pedido .buttons{
+    display: flex;
+    justify-content: space-around;
+}
+.resumen-Pedido button{
+    width: 45%;
+    height: 40px;
+    border: solid black;
+    background-color: rgb(28, 145, 235);
     border-radius: 10px;
-    margin: 3% 0%;
-    border-bottom-style: solid;
-    border-color: rgb(128, 58, 58);
-    display: block;
     font-size: 150%;
-    .apartado-resumen, .descuento_Cliente{
-        border-bottom-style: solid;
-        border-color: rgb(128, 58, 58);
-    }
-    h1, h2{
-        text-align: center;
-    }
+    margin: 5% 0%;
+}
 
-    .precio, .producto, .total-descuento, .descuento_Cliente{
-        display: flex;
-        justify-content: space-between;
-        padding: 0% 10%;
-    }
-    .total-descuento, .descuento_Cliente{
-        padding: 0% 3%;
-    }
-    .total{
-        font-size: 150%;
+@media (max-width:760px){
+    main{
         display: block;
-        text-align: center;
-        padding-bottom: 5%;
-        div{
-            display: flex;
-            justify-content: space-between;
-            padding: 0% 1%;
-        }
-        .buttons{
-            display: flex;
-            justify-content: space-around;
-            gap: 4%;
-            margin: 2%;
-            button{
-                width: 50%;
-                height: 50px;
-                background-color: rgb(28, 145, 235);
-                border-style: solid;
-                border-color: black;
-                border-radius: 10px;
-                font-size: 80%;
-            }
-        }
-
     }
-}
-
-@media (max-width:800px){
-    main{
-        display: grid;
-        justify-items: center;
-        padding: 5%;
-        .resumen-Pedido{
-            width: 70%;
-        }
+    .info-Pedido{
+        width: 90%;
+        margin: 5%;
     }
-}
-
-@media (max-width:600px){
-    main{
-        padding: 5%;
-        display:grid;
-        justify-items: center;
-
-        .info-Pedido{
-            .producto, .ultimo-producto{
-                display: block;
-                text-align: center;
-                font-size: 70%;
-                .metodo-envio{
-                    padding-left: 25%;
-                }
-                .cantidad-productos{
-                    padding-left: 30%;
-                }
-            }
-        }
-        .resumen-Pedido{
-            width: 70%;
-            font-size: 70%;
-        }
+    .info-Pedido .producto, .info-Pedido .ultimo-producto{
+        flex-direction: column;
     }
-
+    .info-Pedido form input{
+        width: 80%;
+    }
+    .resumen-Pedido{
+        width: 50%;
+        margin: 5% 25%;
+    }
 }

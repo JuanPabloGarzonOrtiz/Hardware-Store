@@ -1,3 +1,185 @@
-{
-    "productos": []
+
+=======
+    "1": {
+        "productos": []
+    },
+    "2": {
+        "productos": []
+    },
+    "3": {
+        "productos": []
+    },
+    "4": {
+        "productos": []
+    },
+    "5": {
+        "productos": [
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            }
+        ]
+    },
+    "6": {
+        "productos": [
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            }
+        ]
+    },
+    "7": {
+        "productos": []
+    },
+    "8": {
+        "productos": []
+    },
+    "9": {
+        "productos": []
+    },
+    "11": {
+        "productos": []
+    },
+    "12": {
+        "productos": []
+    },
+    "patricia.ruiz@gmail.com": {
+        "productos": [
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Masilla",
+                "precio": "21.60",
+                "precio_descuento": "6",
+                "cantidad": 1
+            }
+        ]
+    },
+    "13": {
+        "productos": [
+            {
+                "nombre": "Arena",
+                "precio": "15.70",
+                "precio_descuento": "5",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Ladrillo",
+                "precio": "1.20",
+                "precio_descuento": "1",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Aspiradora Electrica",
+                "precio": "900.00",
+                "precio_descuento": "54",
+                "cantidad": 1
+            }
+        ]
+    },
+    "14": {
+        "productos": [
+            {
+                "nombre": "Cemento",
+                "precio": "37.50",
+                "precio_descuento": "8",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Reja de Jardin",
+                "precio": "150.00",
+                "precio_descuento": "9",
+                "cantidad": 2
+            }
+        ]
+    },
+    "15": {
+        "productos": [
+            {
+                "nombre": "Pasador de Puerta",
+                "precio": "15.00",
+                "precio_descuento": "4",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Masilla",
+                "precio": "21.60",
+                "precio_descuento": "6",
+                "cantidad": 1
+            },
+            {
+                "nombre": "Aspiradora Electrica",
+                "precio": "900.00",
+                "precio_descuento": "54",
+                "cantidad": 1
+            }
+        ]
+    },
+    "16": {
+        "productos": []
+    },
+    "17": {
+        "productos": []
+    },
+    "18": {
+        "productos": []
+    },
+    "19": {
+        "productos": []
+    },
+    "20": {
+        "productos": []
+    },
+    "21": {
+        "productos": []
+    },
+    "22": {
+        "productos": [
+            {
+                "nombre": "Reja de Jardin",
+                "precio": "150.00",
+                "precio_descuento": "9",
+                "cantidad": 1
+            }
+        ]
+    },
+    "23": {
+        "productos": []
+    },
+    "24": {
+        "productos": []
+    },
+    "25": {
+        "productos": [
+            {
+                "nombre": "Asfalto",
+                "precio": "71.90",
+                "precio_descuento": "16",
+                "cantidad": 1
+            }
+        ]
+    },
+    "26": {
+        "productos": []
+    }
 }

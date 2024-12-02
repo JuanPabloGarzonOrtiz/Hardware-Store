@@ -23,9 +23,10 @@
                 }
                 if (!$resultado){
                     die("Error de Conexion: " . $mysql->error);
-                }
-                while ($fila = $resultado->fetch_assoc()){
-                    $lista[]= $fila;
+                }elseif($resultado->num_rows != 0){
+                    while ($fila = $resultado->fetch_assoc()){
+                        $lista[]= $fila;
+                    }
                 }
                 return $lista;
             }else{
@@ -34,9 +35,9 @@
                 $preparacion->execute();
                 $resultado = $preparacion->get_result();
                 if (!$resultado){
-                    die("Error de Conexion: " . $mysql->error);
+                    return;
                 }
-                if (is_array($lista)){
+                elseif (is_array($lista)){
                     while ($fila = $resultado->fetch_assoc()){
                         $lista[]= $fila;
                     }
@@ -48,6 +49,7 @@
         }
         public function ofertas(){
             $sql_ofertas = "SELECT 
+                                id_Producto,
                                 nombre,
                                 precio,  
                                 descuento, 
@@ -57,6 +59,7 @@
         }
         public function mas_vendidos(){
             $sql_mas_vendidos = "SELECT 
+                                    id_Producto,
                                     nombre, 
                                     precio,
                                     descuento,
@@ -91,6 +94,7 @@
         }
         public function ultimos_Productos($correo){
             $sql_ultimos = "SELECT 
+                                p.id_Producto,
                                 p.nombre,
                                 p.precio,
                                 p.descuento,
@@ -98,6 +102,17 @@
                             FROM Productos p JOIN Historial_Productos hp  ON p.id_Producto = hp.id_Producto
                                 WHERE id_Cliente  = (SELECT id_Cliente FROM Clientes WHERE email = ?);";
             return (new database()) ->consultas_Cuenta($sql_ultimos,$ultimos_Vistos = [], $correo );
+        }
+        public function nuevo_Visto($email, $id_Producto){
+            $sql_verificacion = "SELECT * FROM Historial_Productos 
+                                    WHERE id_Cliente = (SELECT id_Cliente FROM Clientes WHERE email = ?) AND id_Producto = ?;";
+            $existencia_Historial = (new database())->consultas_Cuenta($sql_verificacion, $list = [], $email, $id_Producto);
+            if (empty($existencia_Historial)){
+                $sql_nuevo_Visto = "INSERT INTO Historial_Productos
+                                        (id_Cliente, id_Producto, comprado)
+                                    VALUES ((SELECT id_Cliente FROM Clientes WHERE email = ?),?,true)";
+                (new database())->consultas_Cuenta($sql_nuevo_Visto, $list = [], $email, $id_Producto);
+            }
         }
         public function descuento_Cliente($email){
             $sql_descuento_Cliente ="SELECT
@@ -110,14 +125,16 @@
         }
         public function productos_sec($division){
             $sql_productos ="SELECT 
+                                id_Producto,
                                 nombre,
                                 precio,
                                 descuento,
                                 (SELECT nombre FROM Proveedores WHERE id_Proveedor = p.id_Proveedor) AS marca
                             FROM Productos  p 
-                                WHERE clasificacion  = ?";      
-            return (new database()) ->consultas_Cuenta($sql_productos, null,null,null,$division);   
+                                WHERE clasificacion  = ?";  
+            return (new database()) ->consultas_Cuenta($sql_productos, null,null,null,$division);
         }
+
         public function buscar_Producto($nombre_producto){
             $sql_buscar_Producto = "SELECT 
                                         nombre,

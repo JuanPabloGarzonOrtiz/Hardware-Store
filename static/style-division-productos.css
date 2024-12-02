@@ -1,199 +1,143 @@
-.divisiones-pag-productos{
+main{
     display: flex;
+}
+
+aside{
+    width: 25%;
+    margin: 4% 1%;
+    height: min-content;
+    border: solid rgb(128, 58, 58);
+}
+aside section{
+    border: solid rgb(128, 58, 58);
+    font-size: 150%;
+}
+aside section div{
+    display: flex;
+    margin-left: 2%;
+}
+.Precios{
+    display: grid;
+}
+
+.busqueda-producto input{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 90%;
+    height: 40px;
+    font-size: 100%;
+}
+.marca-Producto{
+    margin-left: 5%;
+    gap: 5%;
+}
+.rango-Precio{
+    justify-content: space-evenly;
+    align-items: center;
+}
+.rango-Precio input{
+    width: 35%;
+    height: 35px;
+}
+.Filtrar{
+    display: flex;
+    justify-content: center;
+}
+.btn_Filtrar{
+    width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    margin: 5%;
+    background-color:rgb(28, 145, 235);
+}
+
+
+.productos-Seccion{
+    width: 100%;
+    padding-right: 1%;
+}
+h1{
+    text-align: center;
+}
+.productos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0.5% 1%;
+    padding-bottom: 10%;
+}
+.producto{
+    border: solid black;
+    position: relative;
+}
+figure{
+    margin: 0%;
+    padding: 0%;
+}
+figure img{
+    width: 100%;
+    border-bottom: solid black;
+}
+.info-producto{
+    text-align: center;
+}
+.btns-producto{
+    display: none;
+    position: absolute;
+    width: 80%;
+    height: 40%;
+    top: 15%;
+    left: 10%;
+    gap: 30%;
+}
+.btns-producto button{
+    border: solid black;
+    border-radius: 25px;
+    border-width: 5px;
+    font-size: 150%;
+    background-color: rgba(255, 254, 254, 0.221);
+}
+.producto:hover .btns-producto{
+    display: grid;
+}
+.ver_producto:hover, .añadir_producto:hover{
+    background-color: rgb(28, 145, 235);
+}
+
+
+@media (max-width: 1198px){
+    main{
+        display:grid;
+    }
     aside{
-        border-style: solid;
-        border-color: rgb(128, 58, 58);
-        margin: 6% 2%;
-        border-radius: 2px;
-        width: 20%;
-        margin-right: 3%;
-        h2{
-            font-size: 200%;
-            text-align: center;
-            border-bottom: solid;
-            border-color: rgb(128, 58, 58);
-            padding-bottom: 5%;
-        }
-        .filtro-Marca, .filtro-Tipo, .filtro-Precio{
-            border-bottom: solid;
-            border-color: rgb(128, 58, 58);
-            font-size: 150%;
-            .submenu-Marca, .submenu-Tipo, .submenu-Precio{
-                display:flex;
-                justify-content: space-between;
-                margin: 3% 3%;
-                button{
-                    width: 10%;
-                    background-color: transparent;
-                    border-style: none;
-                    padding: 0%;
-                }
-            }
-            .busqueda-producto{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                input{
-                    background-color: black;
-                    color: white;
-                    border-radius: 10px;
-                    width: 90%;
-                    height: 40px;
-                    padding-left: 3%;
-                    font-size: 100%;
-                }
-            }
-            .marca-Producto, .tipo-Producto{
-                font-size: 100%;
-                display: flex;
-                justify-content: space-around;
-                margin: 0% 7%
-            }
-            ul{
-                padding-left: 10%;
-                font-size: 100%;
-            }
-            .rango-Precio{
-                display: flex;
-                justify-content: space-evenly;
-                padding: 5% 10%;
-                left: 0%;
-                input{
-                    margin-top: 5%;
-                    width: 35%;
-                    height: 35px;
-                }
-                button{
-                    width: 10%;
-                    background-color: transparent;
-                    border-style: none;
-                    padding: 0%;
-                }
-            }
-        }
+        width: 90%;
+        margin: 5%;
+    }
+    aside section div:not(.submenu-Marca, .submenu-Tipo, .submenu-Precio){
+        display: none;
+    }
+    .filtro-Marca:hover div,.filtro-Tipo:hover div,.filtro-Precio:hover div{
+        display: block;
+        cursor: pointer;
+    }
+    div h3{
+        margin: 0%;
+        padding: 0%;
+    }
+    .btn_Filtrar{
+        margin: 0;
     }
     .productos-Seccion{
-        align-items: center;
-        h1{
-            text-align: center;
-            width: 100%;
-            margin: 3%;
-        }
-        .productos{
-            display: grid;
-            grid-template-columns: repeat(5,1fr);
-            margin-left: 1%;
-            margin-right: 1%;
-            gap: 1%;
-            .producto{
-                border-color: black;
-                border-style: solid;
-                position: relative;
-                figure{
-                    padding: 0;
-                    margin: 0;
-                    width: 260px;
-                    height: 250px;
-                    .img_producto{
-                        width: 260px; 
-                        border-bottom: solid;
-                    }
-                }
-                .info-producto{
-                    text-align: center;
-                }
-                .btns-producto{
-                    display: none;
-                    position: absolute;
-                    width: 80%;
-                    height: 40%;
-                    top: 15%;
-                    left: 10%;
-                    gap: 30%;
-                    z-index: 1;
-                    button{
-                        border-style: solid;
-                        border-width: 5px;
-                        border-radius: 25px;;
-                        border-color: black;
-                        background-color: rgba(255, 254, 254, 0.221);
-                        font-size: 150%;
-                    }
-                }
-                &:hover .btns-producto{
-                    display: grid;
-                    .ver_producto:hover, .añadir_producto:hover{
-                        background-color: rgb(28, 145, 235);
-                    }
-                }
-            }
-        }
+        width: 95%;
+        margin: 0% 3%;
+    }
+    .productos{
+        grid-template-columns: repeat(3,1fr);
     }
 }
-@media(max-width:1000px){
-    .divisiones-pag-productos{
-        aside{
-            width: 28%;
-        }
-        .productos-Seccion{
-            .productos{
-                grid-template-columns: repeat(3,1fr);
-            }
-            .productos{
-                .producto{
-                    figure{
-                        width: 190px;
-                        height: 190px;
-                        .img_producto{
-                            width: 4900%;
-                            border-bottom: none;
-                            border-right: solid;
-                        }
-                    }
-                    .info-producto{
-                        padding-top: 3%;
-                        width: 100%;
-                        line-height: 200%;
-                        text-align: center;
-                    }
-                }
-            }
-        }
-    }
-}
-@media (max-width:810px){
-    .divisiones-pag-productos{
-        display:grid;
-        aside{
-            display: none;
-        }
-        .productos-Seccion{
-            height: 1600px;
-            h1{
-                font-size: 90%;
-                width: 90%;
-            }
-            .productos{
-                grid-template-columns: repeat(1,1fr);
-                .producto{
-                    display: flex;
-                    figure{
-                        width: 155px;
-                        height: 155px;
-                        .img_producto{
-                            width: 135px;
-                            border-bottom: none;
-                            border-right: solid;
-                        }
-                    }
-                    .info-producto{
-                        padding-top: 3%;
-                        width: 100%;
-                        line-height: 200%;
-                        text-align: center;
-                    }
-                }
-            }
-        }
+@media (max-width:430px){
+    .productos{
+        grid-template-columns: repeat(2,1fr);
     }
 }

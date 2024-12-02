@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hardware Store Nuts and Bolts</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link rel="stylesheet" href="/static/style-Producto.css">
         <link rel="stylesheet" href="/static/style.css"/> 
     </head>
@@ -15,24 +16,22 @@
         $producto_Presente = unserialize(urldecode($_GET['value']));
         if (isset($_POST['buscar'])){
             include('../database/database.php');
-            $db = new database();
-            $producto_Buscado =$db->buscar_Producto($_POST['busqueda']);
+            $producto_Buscado =(new database())->buscar_Producto($_POST['busqueda']);
             $metodos_Compartidos->ver_Producto(null,null,$producto_Buscado);
         }
     ?>
     <body>
         <section class="Producto">
-            <div class="Imagen">
-                <img src="../imgs/producto.jpg" alt="Imagen-Generica-Producto" class="img_producto">
-            </div>
+            <img src="../imgs/producto.jpg" alt="Imagen-Generica-Producto" class="img_producto">
             <div class="Informacion">
                 <?php  
                     echo '
-                        <h1>'.htmlspecialchars($producto_Presente['proveedor']).'</h1>
-                        <h2>'.htmlspecialchars($producto_Presente['nombre']).'</h2>
-                        <h2>$'.(htmlspecialchars($producto_Presente['precio']) - htmlspecialchars($producto_Presente['descuento'])).'</h2>
-                        <del>$'.htmlspecialchars($producto_Presente['precio']).'</del>
-                    ';
+                        <div>
+                            <h1>'.htmlspecialchars($producto_Presente['proveedor']).'</h1>
+                            <h2>'.htmlspecialchars($producto_Presente['nombre']).'</h2>
+                            <h2>$'.(htmlspecialchars($producto_Presente['precio']) - htmlspecialchars($producto_Presente['descuento'])).'</h2>
+                            <del>$'.htmlspecialchars($producto_Presente['precio']).'</del>
+                        </div>';
                 ?>
                 <form action="" method="POST">
                     <div class="botones">
