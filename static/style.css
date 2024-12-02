@@ -1,17 +1,18 @@
-body, html {
-    height: 10%;
-    width: 100%;
-    margin: 0%;
-    padding: 0%;
+*{
+    padding: 0;
+    margin: 0;
 }
-main{
-    text-align: center;
-    min-height: 10%;
-    box-sizing: border-box;
-}
+/*Resonsividad de main*/
 body{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     background-color: rgb(231, 219, 204);
-    font-family: 'Courier New', Courier, monospace;
+}
+main {
+    overflow: hidden; 
+    flex-grow: 1;  
+    position: relative;
 }
 
 header{
@@ -19,233 +20,171 @@ header{
     border-color:z black;
     border-style: solid;
     display: flex;
-    justify-content:space-around;
+    flex: 1;
+    justify-content: space-between;
     align-items: center;
-    .Logo_Pagina{
-        padding-right: 8%;
-    }
-    nav{
-        display:flex;
-        flex-direction: column;
-        gap: 20px;
-        letter-spacing: 4px;
-        text-align: center;
-        width: 100%;
-        .barra{
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding-top: 1%;
-            display: inline-block;
-
-            .barra_Busqueda{  
-                box-sizing: border-box;
-                width:100%; 
-                height: 120%;
-                padding-left: 2%;
-                padding-right: 5%;
-                outline: none;
-                background: rgb(231, 219, 204);
-                border-radius: 10px;
-                font-size: 130%;
-            }
-
-            .button_Buscar{
-                position: absolute;
-                right: 5px; 
-                top: 70%;
-                transform: translateY(-50%);
-                z-index: 2;
-                border: none;
-                background: transparent;
-                cursor: pointer;
-            }
-            .button_Buscar:hover{
-                fill: white;
-            }
-        }
-        a{
-            text-decoration: none;
-            color: black;
-        }
-        a:hover{
-            color: rgb(231, 219, 204);
-        }
-    }
-    .Panel_Usario{
-        display: flex;
-        padding-left: 10%;
-        padding-right: 5%;
-        gap:30%;
-
-        .icono_Cuenta,.icono_Carrito{
-            height: 30px;
-        }
-        .icono_Carrito:hover,.icono_Cuenta:hover{
-            fill: rgb(231, 219, 204);
-        }
-    }
 }
+
+header img {
+    max-width: 100px;
+    min-width: 10px;
+    height: auto;
+}
+
+nav{
+    display: flex;
+    flex-grow: 0.5;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+.barra{
+    position: relative;
+}
+.barra_Busqueda{
+    width: 96%;
+    padding:13px;
+    border-radius: 10px;
+    font-size: medium;
+    background-color: rgb(231, 219, 204);
+}
+.button_Buscar {
+    position: absolute;
+    z-index: 1;
+    top: 50%; 
+    right: 1%; 
+    transform: translateY(-50%); 
+    border: none;
+    background: transparent;
+}
+.menu_Desplegable{
+    display: none;
+}
+header svg .menu_Desplegable {
+    display: none;
+}
+
+.ln{
+    letter-spacing: 4px;
+    text-align: center;
+}
+a{
+    font-size:17px;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: rgb(231, 219, 204);
+}
+
+.Panel_Usario{
+    width: 140px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.icono_Cuenta, .icono_Carrito{
+    width: 35px;
+    height: 35px;
+    fill: black;
+}
+.icono_Cuenta:hover, .icono_Carrito:hover{
+    fill:rgb(231, 219, 204);
+}
+
+
 
 footer{
     background-color: rgb(128, 58, 58);
+    border: solid;
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    border-color: black;
-    border-style: solid;
-    .datos_Contacto{
-        width: 33%;
-        padding-left: 1%;
-        .telefono, .ubicacion, .whatsapp, .correo{
-            gap: 3%;
-            line-height: 1%;
-            padding-left: 3%;
-            display: flex;
-            align-items: center;
-        }
-    }
-    .dudas{
-        width: 33%;
-        padding-left: 2%;
-        .enlaces_Dudas{
-            line-height: 180%;
-            display:grid;
-            align-items:center;
-            padding-left: 3%;
-            a{
-                text-decoration: none;
-                color: black;
-            }
-            a:hover{
-                color: rgb(231, 219, 204);
-            }
-        }
-    }
-    .cotizacion{
-        width: 33%;
-        padding-left: 2%;
-        padding-bottom: 3%;
-        .titulo_Cotizacion{
-            display: flex;
-            justify-content: center;
-        }
-        .indicaciones_Cotizacion{
-            line-height: 150%;
-            padding-left: 3%;
-        }
-        .ingreso_Correo{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            .barra_Correo{
-                box-sizing: border-box;
-                border-radius: 10px;
-                outline: none;
-                background-color: rgb(231, 219, 204);
-            }
-            .envio_Correo{
-                border-radius: 10px;
-                background-color: black;
-                color: rgb(231, 219, 204);
-            }
-        }
-        
-    }
+}
+footer section{
+    width: 33%;
+    padding: 1%;
+}
+
+.telefono, .ubicacion, .whatsapp, .correo{
+    gap: 3%;
+    padding: 2% 3%;
+    display: flex;
+}
+
+.dudas div a{
+    display:grid;
+    padding: 2% 3%;
+}
+
+.indicaciones_Cotizacion{
+    padding: 3% 3%;
+    padding-bottom: 6%;
+}
+
+.ingreso_Correo{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.barra_Correo{
+    border-radius: 10px;
+    background-color: rgb(231, 219, 204);
+}
+.envio_Correo{
+    border-radius: 10px;
+    background-color: black;
+    color: rgb(231, 219, 204);
 }
 
 
+@media (max-width: 940px){
+    nav{
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: 5%;
+        flex-grow: 1;
+    }
+    .barra{
+        width: 70%;
+    }
+    .barra_Busqueda{
+        width: 93%;
+    }
+    .ln{
+        display: none;
+    }
+    .menu_Desplegable{
+        display: block;
+        margin-top: 1%;
+        top: 50%; 
+        right:0%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    .menu_Desplegable:hover path{
+        fill: rgb(231, 219, 204);
+    }
 
-@media (max-width: 700px) {
-    a{
-        font-size:80%;
-        text-align:justify;
+    .menu-container:hover .ln {
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background-color: rgb(28, 145, 235);
+        border: solid 4px;
+        z-index: 1;
     }
-    footer{
-        .datos_Contacto{
-            .ubicacion{
-                line-height: 100%;
-            }
-        }
-        .cotizacion{
-            .ingreso_Correo{
-                display: grid;
-                justify-items: center;
-                .envio_Correo{
-                    width: 30%;
-                }
-            }
-        }
+    .ln {
+        pointer-events: auto;
     }
-}
-@media (max-width:600px){
-    header{
-        .Logo_Pagina{
-            width: 200%;
-        }
-        nav{
-            width: 900%;
-            gap: 4px;
-            letter-spacing: 0px;
-            .barra{
-                width: 100%;
-                height: 20px;
-                padding-top: 5%;
-                
-                .barra_Busqueda{
-                    padding-left: 4%;
-                    padding-right: 12%;
-                    font-size: 90%;
-                }
-                .button_Buscar{
-                    padding-top: 4%;
-                    padding-right: 0%;
-                }
-            }
-            a{
-                font-size: 50%;
-                text-align:justify;
-            }
-        }
-        .Panel_Usario{
-            .icono_Carrito,.icono_Cuenta{
-                height: 20px;
-            }
-        }  
+    .ln strong {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px;
     }
-    .Marcas{
-        h1{
-            font-size: 100%;
-        }
-        .Logo_Structure, .Logo_Imperio-Mineral, .Logo_Boodywork-and-Paiting, .Logo_Picasso{
-            width: 100px;
-        }
-    }
-    footer{
-        display:block;
-        padding-top: 1%;
-        padding-bottom: 10%;
-        font-size: 70%;
 
-        .datos_Contacto{
-            width: 95%;
-            text-align: center;
-            gap: 40%;
-            .telefono, .ubicacion, .whatsapp, .correo{
-                justify-content: center;
-                gap: 1%;
-            }
-        }
-        .dudas{
-            width: 95%;
-            text-align: center;
-            .enlaces_Dudas{
-                justify-content:center;
-            }
-        }
-        .cotizacion{
-            width: 95%;
-        }
+    footer{
+        flex-direction: column;
+        align-items: center;
     }
 }

@@ -49,8 +49,8 @@
                             <section class="contraseña-Usuario">
                                 <h1>Contraseña</h1>
                                 <input type="text" placeholder="Ingrese su contraseña" name="contraseña">
-                                <button type="submit" name="submit">Entrar</button>
                             </section>
+                            <button type="submit" name="submit">Entrar</button>
                         </form>
                         <p><hr></p>
                         <a href="registro-user.php"  class="creacion-cuenta"><strong>¿No tienes una cuenta? Regístrate</strong></a>
@@ -60,7 +60,6 @@
                         $contraseña = $_POST['contraseña'];
                         $corroboracion_Cuenta = ($db->logeo($correo, $contraseña)) ? : '';
                         if (!empty($corroboracion_Cuenta)){
-                            /*header('Location: ../templates/inicio.php');*/
                             echo "<meta http-equiv='refresh' content='0;url=inicio.php'>";
                             exit();
                         }else{
