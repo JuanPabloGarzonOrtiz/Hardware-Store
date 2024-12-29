@@ -36,8 +36,7 @@
                         }else{
                             foreach ($productos[$_SESSION['email_user']]['productos'] as $producto){
                                 $contador++;
-                                $lista_Precios [] = htmlspecialchars($producto['precio']);
-                                $cantidad = intval(htmlspecialchars($producto['cantidad']));
+                                $lista_Precios [] = htmlspecialchars($producto['precio']) * intval(htmlspecialchars($producto['cantidad'])) ;
                                 echo '
                                     <div class='.($contador == $total ? "ultimo-producto" : "producto").'>
                                         <h2>'. htmlspecialchars($producto['nombre']) .'</h2>
@@ -62,14 +61,17 @@
                                             <form method="POST" action="">
                                                 <div class="cantidad-productos">
                                                     <h4>Cantidad:</h4>
-                                                    <input type="number" value='.htmlspecialchars($producto['cantidad']).' min=1>
+                                                    <input type="number" id="cantidadInput" name = "nueva_Cantidad" value='.htmlspecialchars($producto['cantidad']).' min=1>
                                                 </div>
                                                 <input type="hidden" name="p_id" value="' . $contador . '">
-                                                <button type="submit" name="submit">Borrar Producto</button>
+                                                <div>
+                                                    <button type="submit" name="cantidad">Actualizar Cantidad</button>
+                                                    <button type="submit" name="submit" value="">Borrar Producto</button>
+                                                </div>
                                             </form>
                                         </div>
-
-                                    </div>';
+                                    </div>';                                                                      
+                                    
                             }
                             if (isset($_POST['submit'])){
                                 $jsonList = '../static/lista.json';
@@ -83,16 +85,29 @@
                                     header('Location: carrito.php');
                                     exit();
                                 }
+                            }elseif(isset($_POST['cantidad'])){
+                                echo $_POST['nueva_Cantidad'];
+                                $jsonList = '../static/lista.json';
+                                $lista =file_get_contents($jsonList);
+                                $productos = json_decode($lista, true);
+                                foreach($productos[$_SESSION['email_user']]['productos'] as &$producto){
+                                    if ($producto['nombre'] === htmlspecialchars($producto['nombre'])){
+                                        $producto['cantidad'] = $_POST['nueva_Cantidad'];
+                                        break;
+                                    }
+                                }
+                                file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
                             }
                         }
                     
                 echo '</section>';
+
                 echo         
                     '<section class="resumen-Pedido">
                         <h1>Mi Carrito</h1>
                         <div class="apartado-resumen">
                             <div class="precio">
-                                <p>Subtotal</p> <p>$'.array_sum($lista_Precios).'</p>
+                                <p>Subtotal</p> <p>$'.array_sum($lista_Precios) .'</p>
                             </div>
                             <div class="precio">
                                 <p>Envio Gratis</p><p>$0.00</p>
@@ -109,8 +124,8 @@
                             }
                             else{
                                 foreach ($productos[$_SESSION['email_user']]['productos'] as $producto){
-                                    $lista_Descuentos [] = htmlspecialchars($producto['precio_descuento']);
-                                    $precio_total += (htmlspecialchars($producto['precio']) - htmlspecialchars($producto['precio_descuento']));
+                                    $lista_Descuentos [] = htmlspecialchars($producto['precio_descuento']) * htmlspecialchars($producto['cantidad']);
+                                    $precio_total += ((htmlspecialchars($producto['precio']) - htmlspecialchars($producto['precio_descuento'])))* htmlspecialchars($producto['cantidad']);
                                     echo 
                                     '<div class="producto">
                                         <p>'.htmlspecialchars($producto['nombre']).'</p> <p>$'. htmlspecialchars($producto['precio_descuento']) .'</p>
@@ -125,15 +140,12 @@
                             require('../database/database.php');
                             $cantidad_Compras = (new database())->descuento_Cliente($_SESSION['email_user']);
                             $cantidad = (!empty($cantidad_Compras) ? htmlspecialchars($cantidad_Compras['Cantidad_Compras']): 0);
-                            if ($cantidad == 0){
-                                $descuento = 0;
-                            }elseif ($cantidad >= 1 && $cantidad <= 4){
-                                $descuento = 2;
-                            }elseif ($cantidad >=5 && $cantidad <= 9){
-                                $descuento = 5;
-                            }elseif ($cantidad >= 10){
-                                $descuento = 10;
-                            }
+                            match (true){
+                                $cantidad == 0 => $descuento = 0,
+                                $cantidad >= 1 && $cantidad <= 4 => $descuento = 2,
+                                $cantidad >=5 && $cantidad <= 9 => $descuento = 5,
+                                $cantidad >= 10 => $descuento = 10
+                            };
                             $descuento_Cliente_Aplicado = ($descuento * $precio_total)/100;
                             echo '
                             <div class="descuento_Cliente">
@@ -163,20 +175,20 @@
                             </form>
                         </div>';
                 echo '</section>';
-                    if (isset($_POST['submit_pagar']) || isset($_POST['submit_cotizar'])) {
-                        if (isset($_SESSION['email_user'])  & !is_int($_SESSION['email_user'])){
-                            $jsonList = '../static/lista.json';
-                            $lista =file_get_contents($jsonList);
-                            $productos = json_decode($lista, true);
-                            for ($cont= count($productos[$_SESSION['email_user']]['productos']) - 1; $cont >= 0; $cont --){
-                                unset($productos[$_SESSION['email_user']]['productos'][$cont]);
-                            }
-                            file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
-                            sleep(5);
-                            header('Location: ../index.php');
-                            exit(); 
+                if (isset($_POST['submit_pagar']) || isset($_POST['submit_cotizar'])) {
+                    if (isset($_SESSION['email_user'])  & !is_int($_SESSION['email_user'])){
+                        $jsonList = '../static/lista.json';
+                        $lista =file_get_contents($jsonList);
+                        $productos = json_decode($lista, true);
+                        for ($cont= count($productos[$_SESSION['email_user']]['productos']) - 1; $cont >= 0; $cont --){
+                            unset($productos[$_SESSION['email_user']]['productos'][$cont]);
                         }
+                        file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
+                        sleep(5);
+                        header('Location: ../index.php');
+                        exit(); 
                     }
+                }
             ?>
         </main>
         <?php $metodos_Compartidos->mfooter();?> 

@@ -10,7 +10,7 @@
                 "nombre" => htmlspecialchars($producto['nombre']),
                 "precio" => htmlspecialchars($producto['precio']),
                 "precio_descuento" => htmlspecialchars($producto['descuento']),
-                "cantidad" => 1
+                "cantidad" => (htmlspecialchars($producto['cantidad'])  == NULL) ? 1 : htmlspecialchars($producto['cantidad'])
             );
             foreach($productos[$_SESSION['email_user']]['productos'] as &$producto){
                 if ($producto['nombre'] === $nuevoProducto['nombre']){
@@ -25,15 +25,12 @@
             file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
         }
         public function imprimir_Productos($lista_Productos_Seccion,$añadir_a_Carrito, $ver_producto){
-            if ($añadir_a_Carrito == "submit_compra_Ofertas"){
-                $id = "p_id_Oferta";
-            }elseif ($añadir_a_Carrito == "submit_Mas_Vendidos"){
-                $id = "p_id_Mas_Vendidos";
-            }elseif ($añadir_a_Carrito == "submit_compra_ultimos"){
-                $id = "p_id_Visto";
-            }elseif($añadir_a_Carrito == "submit_compra"){
-                $id = "p_id_Seccion";
-            }
+            match ($añadir_a_Carrito){
+                "submit_compra_Ofertas" => $id = "p_id_Oferta",
+                "submit_Mas_Vendidos" => $id = "p_id_Mas_Vendidos",
+                "submit_compra_ultimos" => $id = "p_id_Visto",
+                "submit_compra" => $id = "p_id_Seccion"
+            };
             for ($cont = 0; $cont < count($lista_Productos_Seccion); $cont ++){
                 echo '
                     <div class="producto">
