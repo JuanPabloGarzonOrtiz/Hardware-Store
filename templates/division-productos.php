@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hardware Store Nuts and Bolts</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-        <link rel="stylesheet" href="/static/style-division-productos.css">
-        <link rel="stylesheet" href="/static/style.css"/>
+        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style-division-productos.css">
+        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style.css"/>
     </head>
     <body>
         <?php 
