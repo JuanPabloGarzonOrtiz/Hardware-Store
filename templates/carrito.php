@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hardware Store Nuts and Bolts</title>
-        <link rel="stylesheet" href="/static/style.css"/> 
-        <link rel="stylesheet" href="/static/style-carrito.css">
+        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style.css"/> 
+        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style-carrito.css">
     </head>
     <body>
         <?php 
