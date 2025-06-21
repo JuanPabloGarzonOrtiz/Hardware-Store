@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style.css"/> 
-        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style-Logeo.css">
+        <link rel="stylesheet" href="/static/css/style.css"/> 
+        <link rel="stylesheet" href="/static/css/style-Logeo.css">
     </head>
     <body>
         <?php 
-            require('metodos.php');
+            require('../includes/metodos.php');
             $metodos_Compartidos = new metodos();
             echo $metodos_Compartidos->mheader();
             if (isset($_POST['buscar'])){

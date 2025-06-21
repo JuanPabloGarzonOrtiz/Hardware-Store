@@ -2,7 +2,7 @@ main{
     display: flex;
     justify-content: space-around;
 }
-main section{
+main section:not(.form){
     border:solid rgb(128, 58, 58);
     border-radius: 20px;
     margin: 3% 0%;
@@ -11,9 +11,10 @@ main section{
 .info-Pedido{
     width: 70%;
 }
+/*
 .info-Pedido .producto{
     border-bottom: solid rgb(128, 58, 58);
-}
+}*/
 .info-Pedido div:not(.metodos-envio, .precios){
     display: flex;
     align-items: center;
@@ -30,17 +31,17 @@ main section{
     width: 23%;
     text-align: center;
 }
-.info-Pedido form{
+.info-Pedido .form{
     text-align: center;
 }
-.info-Pedido form input{
-    width: 20%;
+.info-Pedido .form input{
+    width: 30px;
     height: 50%;
     border: solid 1px rgb(28, 145, 235);
     border-radius: 5px;
     background-color: rgba(28, 145, 235, 0.273);
 }
-.info-Pedido form button{
+.info-Pedido .form button{
     background-color: black;
     color: white;
     border: solid rgb(128, 58, 58);
@@ -90,7 +91,7 @@ h1, h2{
     .info-Pedido .producto, .info-Pedido .ultimo-producto{
         flex-direction: column;
     }
-    .info-Pedido form input{
+    .info-Pedido .form input{
         width: 80%;
     }
     .resumen-Pedido{
