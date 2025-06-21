@@ -77,7 +77,7 @@
             $session_Anterior = $_SESSION['email_user'];
             $_SESSION['email_user'] =(!empty($datos) ? $correo : "");
 
-            $jsonList = '../static/lista.json';
+            $jsonList = '../static/json/lista.json';
             $lista = file_get_contents($jsonList);
             $productos = json_decode($lista, true);
             foreach($productos as $producto => &$valor){
@@ -136,13 +136,17 @@
         }
 
         public function buscar_Producto($nombre_producto){
-            $sql_buscar_Producto = "SELECT 
-                                        nombre,
-                                        precio,
-                                        precio,
-                                        descuento
-                                    FROM Productos WHERE nombre = ?";
-            return(new database()) ->consultas_Cuenta($sql_buscar_Producto,null,null,null,$nombre_producto);
+
+            $sql_buscar_Producto = "SELECT
+                                        prod.nombre,
+                                        prod.precio,
+                                        prod.descuento,
+                                        prov.nombre AS marca
+                                    FROM Productos prod
+                                    INNER JOIN Proveedores prov
+                                        ON prod.id_Proveedor = prov.id_Proveedor
+                                    WHERE prod.nombre = ?;";
+            return (new database()) ->consultas_Cuenta($sql_buscar_Producto,null,null,null,$nombre_producto);
         }
         public function registro($nombre, $email, $password){
             global $mysql;

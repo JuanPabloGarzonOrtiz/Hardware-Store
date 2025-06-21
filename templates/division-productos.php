@@ -5,15 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hardware Store Nuts and Bolts</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style-division-productos.css">
-        <link rel="stylesheet" href="/proyect_Hardware_Store/static/style.css"/>
+        <link rel="stylesheet" href="/static/css/style-division-productos.css"/>
+        <link rel="stylesheet" href="/static/css/style.css"/>
     </head>
     <body>
         <?php 
             session_start();
             $seccion_Productos = $_GET['texto'];
             include('../database/database.php');
-            require('metodos.php');
+            $db = new database();
+            require('../includes/metodos.php');
             $metodos_Compartidos = new metodos();
             $productos_Seccion = (new database())->productos_sec($seccion_Productos);
             $modifique_h = str_replace('<a href="/templates/division-productos.php?texto='.$seccion_Productos.'">'.$seccion_Productos.'</a>',"",$metodos_Compartidos->mheader());
@@ -127,14 +128,10 @@
                     $metodos_Compartidos = new metodos();
                     echo  '<h1>'.htmlspecialchars($seccion_Productos).'</h1>';
                     echo '<section class="productos">';
-                    $metodos_Compartidos->imprimir_Productos($productos_Seccion, $añadir_a_Carrito = "submit_compra", $ver_producto = "producto");
+                        $metodos_Compartidos->imprimir_Productos($productos_Seccion, $añadir_a_Carrito = "submit_compra", $ver_producto = "producto");
                     echo '</section>';
-                    if (isset($_POST['submit_compra'])){
-                        $metodos_Compartidos->añadir_a_Carrito($productos_Seccion, $_POST['p_id_Seccion']);
-                    }elseif(isset($_POST['producto'])){
-                        $metodos_Compartidos->ver_Producto($productos_Seccion, $_POST['p_id_Seccion']);
-                    }
                 ?>
+                <script src="/static/js/app.js"></script>
             </div>
         </main>
         <?php $metodos_Compartidos->mfooter(); ?> 

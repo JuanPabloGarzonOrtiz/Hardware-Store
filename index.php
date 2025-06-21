@@ -11,7 +11,7 @@
             /*Session json*/
             $_SESSION['email_user'] = null;
             if (!isset($_SESSION['email_user'])){
-                $jsonList = 'static/lista.json';
+                $jsonList = 'static/json/lista.json';
                 $file = file_get_contents($jsonList);
                 $data = json_decode($file,true);
                 $llaves = array_keys($data);

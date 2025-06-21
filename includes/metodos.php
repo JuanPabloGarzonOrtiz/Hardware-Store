@@ -1,7 +1,48 @@
+<?php
+    $datos = json_decode(file_get_contents("php://input"), true);
+    if ($datos != null){
+        if ($datos["metodo"] == "workToJS"){
+            (new workToJs())->workToJs($datos);
+        }
+    }
+    class workToJs{
+        public function workToJs($datos){
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                $metodos_Compartidos = new metodos();
+                session_start();
+                $jsonList = '../static/json/lista.json';
+                $lista =file_get_contents($jsonList);
+                $productos = json_decode($lista, true);
+                if ($datos["type"] === "add"){
+                    $metodos_Compartidos->añadir_a_Carrito(null, null, $datos);
+                }elseif($datos["type"] === "delete"){
+                    unset($productos[$_SESSION['email_user']]['productos'][$datos["id"]]);
+                    $productos[$_SESSION['email_user']]['productos'] = array_values($productos[$_SESSION['email_user']]['productos']); 
+                    file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
+                    echo json_encode(["status" => "eliminado"]);
+                }elseif($datos["type"] === "update_cantidad"){
+                    for ($i=0; $i < count($productos) ; $i++) { 
+                        if ($i == $datos["id"]){
+                            $productos[$_SESSION['email_user']]['productos'][$i]["cantidad"] = $datos["cantidad"];
+                            break;
+                        }
+                    }
+                    file_put_contents($jsonList, json_encode($productos, JSON_PRETTY_PRINT));
+                    echo json_encode(["status" => "actualizado"]);
+                }
+                elseif($datos[0]["type"] === "add"){
+                    $metodos_Compartidos->añadir_a_Carrito($datos, $datos[0]["id"],null);
+                }elseif($datos[0]["type"] === "view"){
+                    $ulr = $metodos_Compartidos->ver_Producto($datos, $datos[0]["id"],null);
+                }
+            }
+        }
+    }
+?>
 <?php 
     class metodos{
         public function añadir_a_Carrito($lista_Productos_Seccion = "", $id_Producto = "", $producto_Enviado = ""){
-            $jsonList = '../static/lista.json';
+            $jsonList = '../static/json/lista.json';
             $lista = file_get_contents($jsonList);
             $productos = json_decode($lista, true);
             $producto_Existente = false;
@@ -38,23 +79,29 @@
                             <img src="../imgs/producto.jpg" alt="Imagen-Generica-Producto"  class="img_producto">
                         </figure>
                         <div class="info-producto">
-                            <h2>'. htmlspecialchars($lista_Productos_Seccion[$cont]['nombre']).'</h2>'.
-                            '<p>'. htmlspecialchars($lista_Productos_Seccion[$cont]['marca']).'</p>'.
-                            '<del>$'. htmlspecialchars($lista_Productos_Seccion[$cont]['precio']).'</del>'.
-                            '<h2>$'. (htmlspecialchars($lista_Productos_Seccion[$cont]['precio']) - htmlspecialchars($lista_Productos_Seccion[$cont]['descuento'])).'</h2>'.
+                            <h2 id="nombre">'. htmlspecialchars($lista_Productos_Seccion[$cont]['nombre']).'</h2>'.
+                            '<p id="marca">'. htmlspecialchars($lista_Productos_Seccion[$cont]['marca']).'</p>'.
+                            '<del id="precio">$'. htmlspecialchars($lista_Productos_Seccion[$cont]['precio']).'</del>'.
+                            '<h2 id="descuento">$'. (htmlspecialchars($lista_Productos_Seccion[$cont]['precio']) - htmlspecialchars($lista_Productos_Seccion[$cont]['descuento'])).'</h2>'.
                         '</div>
-                        <form method="POST" action="">
+                        <input type="hidden" class="id_product"  name='.$id.' value="' . $cont . '">
+                        <div class="btns-producto">
+                            <button class="ver_producto" type="button" name='.$ver_producto.'>Ver Producto</button>
+                            <button class="añadir_producto" type="button" name='.$añadir_a_Carrito.'>Añadir al Carrito</button>
+                        </div>
+
+                        <!--<form method="POST" action="">
                             <input type="hidden" name='.$id.' value="' . $cont . '">
                             <div class="btns-producto">
                                 <button class="ver_producto" type="submit" name='.$ver_producto.'>Ver Producto</button>
                                 <button class="añadir_producto" type="submit" name='.$añadir_a_Carrito.'>Añadir al Carrito</button>
                             </div>
-                        </form>
+                        </form>-->
                     </div>';
             }
         }
         public function ver_Producto($lista_Productos_Seccion, $cont,$informacion_Producto = ""){
-            $producto = ($informacion_Producto != "") ? $informacion_Producto : $lista_Productos_Seccion;
+            $producto = ($informacion_Producto != "") ? $informacion_Producto : $lista_Productos_Seccion; // Caso de Envio de Datos de Producto Listos
             $cont = ($producto == $informacion_Producto) ? 0 : $cont;
             $producto_Array = array(
                 "nombre" => htmlspecialchars($producto[$cont]['nombre']),
@@ -69,10 +116,13 @@
             }
             echo "<meta http-equiv='refresh' content='0;url=producto.php?value=" . urlencode(serialize($producto_Array)) . "'>";
         }
+        
         function mheader(){
             return '
                 <header>
-                    <img src="/proyect_Hardware_Store/imgs/Logo_Pagina.png" alt="Logo_Pagina" width="100" class="Logo_Pagina">
+                    <a href="/templates/inicio.php">
+                        <img src="/imgs/Logo_Pagina.png" alt="Logo_Pagina" width="100" class="Logo_Pagina">
+                    </a>
                     <nav>
                         <section class="barra">
                             <form method="POST" action="">
@@ -90,20 +140,20 @@
                             </svg>
                             <section class = "ln">
                                 <strong>
-                                <a href="/proyect_Hardware_Store/templates/inicio.php">Home</a>
-                                <a href="/proyect_Hardware_Store/templates/division-productos.php?texto=Construcción">Construcción</a>
-                                <a href="/proyect_Hardware_Store/templates/division-productos.php?texto=Ornamentación">Ornamentación</a>
-                                <a href="/proyect_Hardware_Store/templates/division-productos.php?texto=Latoneria">Latoneria</a>
-                                <a href="/proyect_Hardware_Store/templates/division-productos.php?texto=Pintura">Pintura</a>
+                                <a href="/templates/inicio.php">Home</a>
+                                <a href="/templates/division-productos.php?texto=Construcción">Construcción</a>
+                                <a href="/templates/division-productos.php?texto=Ornamentación">Ornamentación</a>
+                                <a href="/templates/division-productos.php?texto=Latoneria">Latoneria</a>
+                                <a href="/templates/division-productos.php?texto=Pintura">Pintura</a>
                                 </strong>
                             </section>
                         </div>
                     </nav>
                     <section class="Panel_Usario">
-                        <a href="/proyect_Hardware_Store/templates/logeo.php" class="enlace_Cuenta">
+                        <a href="/templates/logeo.php" class="enlace_Cuenta">
                             <svg viewBox="0 -960 960 960"  class="icono_Cuenta"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
                         </a>
-                        <a href="/proyect_Hardware_Store/templates/carrito.php" class="enlace_Carrito">
+                        <a href="/templates/carrito.php" class="enlace_Carrito">
                             <svg viewBox="0 -960 960 960"  class="icono_Carrito"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>
                         </a>
                         </section>
