@@ -4,7 +4,6 @@ Hardware-Store es una página web desarrollada en PHP puro, orientada a la gesti
 ## Estado del Proyecto
 En desarrollo
 
-<<<<<<< HEAD
 ## Requisitos de Instalación
  1. **Instalación de apache2**
    - Configuración de Raíz de Apache en `/etc/apache2/sites-avalable`
@@ -42,7 +41,7 @@ En desarrollo
    - `style-carrito.css`: Archivo de Estilo para el main de la Plantilla del Carrito de Compras.
    - `style-Logeo.css`:  Archivo de Estilo para el main de la Plantilla del Logeo y Registro.
  - **imgs/**: Directorio donde se guardan las Imágenes del Proyecto.
-=======
+
 ## Tecnologías Usadas
 - PHP 8.3 
 - MariaDB 
