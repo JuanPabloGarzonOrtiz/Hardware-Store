@@ -89,14 +89,6 @@
                             <button class="ver_producto" type="button" name='.$ver_producto.'>Ver Producto</button>
                             <button class="añadir_producto" type="button" name='.$añadir_a_Carrito.'>Añadir al Carrito</button>
                         </div>
-
-                        <!--<form method="POST" action="">
-                            <input type="hidden" name='.$id.' value="' . $cont . '">
-                            <div class="btns-producto">
-                                <button class="ver_producto" type="submit" name='.$ver_producto.'>Ver Producto</button>
-                                <button class="añadir_producto" type="submit" name='.$añadir_a_Carrito.'>Añadir al Carrito</button>
-                            </div>
-                        </form>-->
                     </div>';
             }
         }
